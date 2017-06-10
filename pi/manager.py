@@ -60,7 +60,7 @@ def syncStart():
 				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
 				callExternalShell("rm /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
 
-clear()		
+#only for debugging : clear()		
 processId = os.getpid()
 print('launching process Id : '  + str(processId))
 if isProcessAvailable() : 
