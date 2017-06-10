@@ -41,7 +41,6 @@ def delFolder(directory):
 		for name in dirs:
 			os.rmdir(os.path.join(root, name))
 		
-#unfolderize('/home/rtorrent/sync')
-#delFolder('/home/rtorrent/sync')
-#normalize('/home/rtorrent/sync/')
-normalize('Z:/darkness/51.15.76.14/prettyLittleLiars/')
+unfolderize('/home/rtorrent/sync')
+delFolder('/home/rtorrent/sync')
+normalize('/home/rtorrent/sync/')

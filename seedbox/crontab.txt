@@ -1,0 +1,1 @@
+*/1 * * * * cd /home/pi/seedtools/ && git fetch && git reset --hard origin/master
