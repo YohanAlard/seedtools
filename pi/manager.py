@@ -52,13 +52,13 @@ def syncStart():
 		files = json.loads(r.get('files'))
 		for file in files:
 			if file['state'] == 'waiting':
-				callExternalShell("touch "+seedboxIp+"/dl..."+file['name'])
+				callExternalShell("touch /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
 				file['state'] = 'downloading'
 				#updating redis
 				r.set('files',json.dumps(files))
 				#start downloading
-				callExternalShell("wget -r --no-passive --no-parent  ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
-				callExternalShell("rm "+seedboxIp+"/dl..."+file['name'])
+				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
+				callExternalShell("rm /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
 
 clear()		
 processId = os.getpid()
