@@ -8,7 +8,6 @@ r = redis.StrictRedis(host='localhost', port=6379, db=0)
 credential = os.environ['credential']
 seedboxIp = os.environ['seedip']
 
-
 def register(processId):
 	r.set('process', processId)
 		
@@ -64,6 +63,8 @@ def syncStart():
 
 #only for debugging : clear()		
 processId = os.getpid()
+print 'starting'
+print str(os.getuid())
 print('launching process Id : '  + str(processId) + ' by ' + str(os.getuid()))
 if isProcessAvailable() : 
 	register(processId)
