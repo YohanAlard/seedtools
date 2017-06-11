@@ -65,7 +65,7 @@ def syncStart():
 
 #only for debugging : clear()		
 processId = os.getpid()
-print('launching process Id : '  + str(processId))
+print('launching process Id : '  + str(processId) + ' by ' + os.getlogin())
 if isProcessAvailable() : 
 	register(processId)
 	r.delete('files')
