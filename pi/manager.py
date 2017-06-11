@@ -58,6 +58,7 @@ def syncStart():
 				#start downloading
 				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
 				callExternalShell("rm /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
+				callExternalShell("ssh root@"+seedboxIp+" rm /home/rtorrent/sync/"+file['name'])
 				files.remove(file);
 				r.set('files',json.dumps(files))
 
