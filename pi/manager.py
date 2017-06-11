@@ -30,7 +30,8 @@ def clear():
 	
 def callExternalShell(command):
 	print command
-	subprocess.call(command, shell=True)
+	r = subprocess.call(command, shell=True)
+	print r
 	
 def listFiles():
 	files = []	
