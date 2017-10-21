@@ -2,7 +2,7 @@
 import os
 import re
 
-ROOT_DIR ='/home/rtorrent/sync/' 
+ROOT_DIR ='/root/rtorrent/downloads/outcoming' 
 def normalize(directory):
     #print('directory' +directory );
     for filename in os.listdir(directory):
@@ -32,8 +32,8 @@ def unfolderize(directory):
 		if os.path.isdir(directory + '/'+ filename):
 			unfolderize(directory + '/'+  filename)
 		else:
-			#print(directory + filename + " go to " + '/home/rtorrent/sync/' +filename)
-			os.rename(directory  + '/'+ filename, '/home/rtorrent/sync/' +filename)
+			#print(directory + filename + " go to " + '/root/rtorrent/downloads/outcoming' +filename)
+			os.rename(directory  + '/'+ filename, '/root/rtorrent/downloads/outcoming' +filename)
 		
 
 def delFolder(directory):
@@ -41,6 +41,6 @@ def delFolder(directory):
 		for name in dirs:
 			os.rmdir(os.path.join(root, name))
 		
-unfolderize('/home/rtorrent/sync')
-delFolder('/home/rtorrent/sync')
-normalize('/home/rtorrent/sync/')
+unfolderize('/root/rtorrent/downloads/outcoming')
+delFolder('/root/rtorrent/downloads/outcoming')
+normalize('/root/rtorrent/downloads/outcoming')
