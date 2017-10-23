@@ -2,9 +2,9 @@
 import os
 import re
 
-ROOT_DIR ='/root/rtorrent/downloads/outcoming' 
+ROOT_DIR ='/root/downloads/outcoming/' 
 def normalize(directory):
-    #print('directory' +directory );
+    print('directory' +directory );
     for filename in os.listdir(directory):
 		if filename.endswith('.html') or filename.endswith('.nfo'):
 			os.remove(directory + filename)
@@ -32,8 +32,8 @@ def unfolderize(directory):
 		if os.path.isdir(directory + '/'+ filename):
 			unfolderize(directory + '/'+  filename)
 		else:
-			#print(directory + filename + " go to " + '/root/rtorrent/downloads/outcoming' +filename)
-			os.rename(directory  + '/'+ filename, '/root/rtorrent/downloads/outcoming' +filename)
+			print(directory + filename + " go to " + '/root/downloads/outcoming/' +filename)
+			os.rename(directory  + '/'+ filename, '/root/downloads/outcoming/' +filename)
 		
 
 def delFolder(directory):
@@ -41,6 +41,6 @@ def delFolder(directory):
 		for name in dirs:
 			os.rmdir(os.path.join(root, name))
 		
-unfolderize('/root/rtorrent/downloads/outcoming')
-delFolder('/root/rtorrent/downloads/outcoming')
-normalize('/root/rtorrent/downloads/outcoming')
+unfolderize('/root/downloads/outcoming/')
+delFolder('/root/downloads/outcoming/')
+normalize('/root/downloads/outcoming/')
