@@ -32,12 +32,13 @@ def callExternalShell(command):
 	print r
 	
 def listFiles():
+	print "listFiles()"
 	files = []	
 	if r.get('files'):
 		files = json.loads(r.get('files'))
 	print(files)
 	#list files on remote 
-	proc = subprocess.Popen(['ssh', 'root@'+seedboxIp, 'ls', '/home/rtorrent/sync/'], stdout=subprocess.PIPE)
+	proc = subprocess.Popen(['ssh', 'root@'+seedboxIp, 'ls', '/root/rtorrent/downloads/outcoming'], stdout=subprocess.PIPE)
 	for newfileName in proc.stdout.readlines():
 		file = { 'state' : 'waiting', 'name' : newfileName}
 		if (any(x['name'] == newfileName for x in files)):
@@ -47,6 +48,7 @@ def listFiles():
 	r.set('files',json.dumps(files))
 
 def syncStart():
+	print "syncStart"
 	if r.get('files'):
 		files = json.loads(r.get('files'))
 		for file in files:
@@ -58,7 +60,7 @@ def syncStart():
 				#start downloading
 				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
 				callExternalShell("rm /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
-				callExternalShell("ssh root@"+seedboxIp+" rm /home/rtorrent/sync/"+file['name'])
+				callExternalShell("ssh root@"+seedboxIp+" rm /root/rtorrent/downloads/outcoming/"+file['name'])
 				files.remove(file);
 				r.set('files',json.dumps(files))
 
@@ -73,7 +75,7 @@ if isProcessAvailable() :
 	#link to ssh conf
 	callExternalShell(". ~/.keychain/raspberrypi-sh")
 	#normalize files on seedbox
-	callExternalShell("ssh root@"+seedboxIp+" /root/seedtools/seedbox/normalize.py")
+	callExternalShell("ssh root@"+seedboxIp+"/root/seedtools/seedbox/normalize.py")
 	#list remote files
 	listFiles()
 	syncStart()
