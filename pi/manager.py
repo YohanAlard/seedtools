@@ -75,7 +75,7 @@ if isProcessAvailable() :
 	#link to ssh conf
 	callExternalShell(". ~/.keychain/raspberrypi-sh")
 	#normalize files on seedbox
-	callExternalShell("ssh root@"+seedboxIp+"/root/seedtools/seedbox/normalize.py")
+	callExternalShell("ssh root@"+seedboxIp+" /root/tools/seedbox/normalize.py")
 	#list remote files
 	listFiles()
 	syncStart()
