@@ -38,7 +38,7 @@ def listFiles():
 		files = json.loads(r.get('files'))
 	print(files)
 	#list files on remote 
-	proc = subprocess.Popen(['ssh', 'root@'+seedboxIp, 'ls', '/root/rtorrent/downloads/outcoming'], stdout=subprocess.PIPE)
+	proc = subprocess.Popen(['ssh', 'root@'+seedboxIp, 'ls', '/root/downloads/outcoming'], stdout=subprocess.PIPE)
 	for newfileName in proc.stdout.readlines():
 		file = { 'state' : 'waiting', 'name' : newfileName}
 		if (any(x['name'] == newfileName for x in files)):
@@ -58,9 +58,9 @@ def syncStart():
 				#updating redis
 				r.set('files',json.dumps(files))
 				#start downloading
-				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/"+file['name'])
+				callExternalShell("wget -r --no-passive --no-parent --directory-prefix=/mnt/freebox/darkness ftp://"+credential+"@"+seedboxIp+"/outcoming/"+file['name'])
 				callExternalShell("rm /mnt/freebox/darkness/"+seedboxIp+"/dl..."+file['name'])
-				callExternalShell("ssh root@"+seedboxIp+" rm /root/rtorrent/downloads/outcoming/"+file['name'])
+				callExternalShell("ssh root@"+seedboxIp+" rm /root/downloads/outcoming/"+file['name'])
 				files.remove(file);
 				r.set('files',json.dumps(files))
 
