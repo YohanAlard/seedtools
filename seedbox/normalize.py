@@ -21,6 +21,7 @@ def normalize(directory):
 			newFileName = newFileName.replace("www.CpasBien.cm", "") 
 			newFileName = newFileName.replace("Torrent9.info", "") 
 			newFileName = newFileName.replace("Torrent9.ws", "") 
+			newFileName = newFileName.replace("Torrent9.tv", "") 
 			newFileName = newFileName.replace("www.Cpasbien.me", "") 
 			newFileName = newFileName.replace("www.Cpasbien.pe", "") 
 			newFileName = newFileName.replace("www.Cpasbien.pw", "") 
