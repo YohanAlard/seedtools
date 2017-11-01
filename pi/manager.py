@@ -66,8 +66,6 @@ def syncStart():
 
 #only for debugging : clear()		
 processId = os.getpid()
-print 'starting'
-print str(os.getuid())
 print('launching process Id : '  + str(processId) + ' by ' + str(os.getuid()))
 if isProcessAvailable() : 
 	register(processId)
@@ -79,6 +77,7 @@ if isProcessAvailable() :
 	#list remote files
 	listFiles()
 	syncStart()
+	callExternalShell('/home/pi/seedtools/pi/gather.py');
 	#unregister
 	unregister()
 else :
